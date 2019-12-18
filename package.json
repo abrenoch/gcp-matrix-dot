@@ -1,21 +1,21 @@
 {
-  "name": "matrix-bot-sdk-bot-template",
+  "name": "gcp-matrix-dot",
   "version": "0.1.0",
-  "author": "TravisR",
+  "author": "abrenoch",
   "license": "Apache-2.0",
-  "description": "A template repository for bots made with the matrix-bot-sdk",
+  "description": "A matrix bot for the Global Consciousness Project",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turt2live/matrix-bot-sdk-bot-template.git"
+    "url": "git+https://github.com/abrenoch/gcp-matrix-dot.git"
   },
   "bugs": {
-    "url": "https://github.com/turt2live/matrix-bot-sdk-bot-template/issues"
+    "url": "https://github.com/abrenoch/gcp-matrix-dot/issues"
   },
-  "homepage": "https://github.com/turt2live/matrix-bot-sdk-bot-template#readme",
+  "homepage": "https://github.com/abrenoch/gcp-matrix-dot#readme",
   "keywords": [
     "matrix",
     "bot",
-    "template"
+    "gcp"
   ],
   "main": "lib/index.js",
   "scripts": {
@@ -24,9 +24,11 @@
     "start:dev": "npm run build && node lib/index.js"
   },
   "dependencies": {
+    "canvas": "^2.6.1",
     "config": "^3.2.4",
     "escape-html": "^1.0.3",
-    "js-yaml": "^3.13.1"
+    "js-yaml": "^3.13.1",
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@types/node": "^10.17.5",

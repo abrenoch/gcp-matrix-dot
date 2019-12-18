@@ -1,10 +1,10 @@
-import { LogService, MatrixClient, MessageEvent, RichReply, UserID } from "matrix-bot-sdk";
-import { runHelloCommand } from "./hello";
-import * as htmlEscape from "escape-html";
+import { LogService, MatrixClient, MessageEvent, RichReply, UserID } from 'matrix-bot-sdk';
+import { runCurrentDotCommand } from './dot';
+import * as htmlEscape from 'escape-html';
 
 // The prefix required to trigger the bot. The bot will also respond
 // to being pinged directly.
-export const COMMAND_PREFIX = "!bot";
+export const COMMAND_PREFIX = '!gcp';
 
 // This is where all of our commands will be handled
 export default class CommandHandler {
@@ -23,7 +23,7 @@ export default class CommandHandler {
         await this.prepareProfile();
 
         // Set up the event handler
-        this.client.on("room.message", this.onMessage.bind(this));
+        this.client.on('room.message', this.onMessage.bind(this));
     }
 
     private async prepareProfile() {
@@ -35,7 +35,7 @@ export default class CommandHandler {
             if (profile && profile['displayname']) this.displayName = profile['displayname'];
         } catch (e) {
             // Non-fatal error - we'll just log it and move on.
-            LogService.warn("CommandHandler", e);
+            LogService.warn('CommandHandler', e);
         }
     }
 
@@ -56,27 +56,27 @@ export default class CommandHandler {
 
         // Try and figure out what command the user ran, defaulting to help
         try {
-            if (args[0] === "hello") {
-                return runHelloCommand(roomId, event, args, this.client);
+            if (args[0] === "dot") {
+                return runCurrentDotCommand(roomId, event, args, this.client);
             } else {
                 const help = "" +
-                    "!bot hello [user]     - Say hello to a user.\n" +
-                    "!bot help             - This menu\n";
+                    `${COMMAND_PREFIX} dot              - Display the current GCP Dot\n` +
+                    `${COMMAND_PREFIX} help             - This menu\n`;
 
                 const text = `Help menu:\n${help}`;
                 const html = `<b>Help menu:</b><br /><pre><code>${htmlEscape(help)}</code></pre>`;
                 const reply = RichReply.createFor(roomId, ev, text, html); // Note that we're using the raw event, not the parsed one!
-                reply["msgtype"] = "m.notice"; // Bots should always use notices
+                reply['msgtype'] = 'm.notice'; // Bots should always use notices
                 return this.client.sendMessage(roomId, reply);
             }
         } catch (e) {
             // Log the error
-            LogService.error("CommandHandler", e);
+            LogService.error('CommandHandler', e);
 
             // Tell the user there was a problem
-            const message = "There was an error processing your command";
+            const message = 'There was an error processing your command';
             const reply = RichReply.createFor(roomId, ev, message, message); // We don't need to escape the HTML because we know it is safe
-            reply["msgtype"] = "m.notice";
+            reply['msgtype'] = 'm.notice';
             return this.client.sendMessage(roomId, reply);
         }
     }
