@@ -4,10 +4,9 @@ A bot for displaying the current color of the Global Consciousness Project dot
 
 ## Running / Building
 
-After clicking the 'use this template' button and cloning the repo, you'll need to install the dependencies
-and open an editor to get started. This assumes you have at least **NodeJS 10 or higher**.
+This assumes you have at least **NodeJS 10 or higher**.
 
-1. Run `npm install` to get the dependencies.
+Run `npm install` to get the dependencies.
 
 To build it: `npm run build`.
 
