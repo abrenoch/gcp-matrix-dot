@@ -28,7 +28,7 @@
     "config": "^3.2.4",
     "escape-html": "^1.0.3",
     "js-yaml": "^3.13.1",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.1"
   },
   "devDependencies": {
     "@types/node": "^10.17.5",
